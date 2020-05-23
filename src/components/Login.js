@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import ReactDOM from "react-dom";
 import '../App.css';
 import * as yup from 'yup';
 import axios from 'axios';
-import { Button } from 'antd';
+
 
 const schema = yup.object().shape({
-    username: yup.string().required("Please enter a name"),
-    password: yup.string(),
+    username: yup.string().required("Please enter a username"),
+    password: yup.string().required("Please enter your password"),
     terms: yup.boolean()
 })
 
@@ -21,7 +20,6 @@ const Login = props  => {
     const [login, setlogin] = useState({
         username: "",
         password:"",
-        terms:false
       });
     
       const handleChanges = event => {
@@ -44,7 +42,6 @@ const Login = props  => {
       const [errors, setErrors] = useState({
         username: "",
         password:"",
-        terms:""
       });
 
       const validate = (event) => {
@@ -73,7 +70,7 @@ const Login = props  => {
               justifyContent: "center",
               margin: 'auto'
           }} className="form" onSubmit={submitForm}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">  Username  </label>
           <input
             onChange={handleChanges}
             id="username"
@@ -82,7 +79,7 @@ const Login = props  => {
             placeholder="Enter valid Username"
             value={login.username}
           />
-          {errors.username.length > 5 ? <p>{errors.username}</p>: null}
+          {errors.username.length > 0 ? <p>{errors.username}</p>: null}
 
           <label htmlFor='password'>Password</label>
           <input
@@ -93,9 +90,10 @@ const Login = props  => {
             placeholder="Please enter a valid password"
             onChange={handleChanges}
           />
+          {errors.password.length > 0 ? <p>{errors.password}</p>: null}
             <hr></hr>
         
-            <button onClick="submit">Login</button>
+            <button className='submitButton' onClick="submit">Login</button>
 
         </form>
 

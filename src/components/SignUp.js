@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import ReactDOM from "react-dom";
 import '../App.css';
 import * as yup from 'yup';
 import axios from 'axios';
-import { Button } from 'antd';
+
 
 const schema = yup.object().shape({
-    name: yup.string().required("Please enter a name"),
-    password: yup.string(),
-    terms: yup.boolean()
+    username: yup.string().required("Please enter a username"),
+    password: yup.string().min(4,"Seems a little short").required("Please enter a password"),
+    repassword:yup.string(),
+    terms: yup.boolean().required("Please read the terms")
 })
 
 
@@ -19,9 +19,10 @@ const SignUp = props  => {
 
 
     const [signUp, setSignUp] = useState({
-        name: "",
+        username: "",
         password:"",
         repassword:"",
+        terms:false
       });
     
       const handleChanges = event => {
@@ -42,9 +43,10 @@ const SignUp = props  => {
       };
 
       const [errors, setErrors] = useState({
-        name: "",
+        username: "",
         password:"",
         repassword:"",
+        terms: ""
       });
 
       const validate = (event) => {
@@ -67,6 +69,7 @@ const SignUp = props  => {
       };
 
       return (
+          
         <form style={{
               display: "flex",
               flexDirection: "column",
@@ -82,30 +85,43 @@ const SignUp = props  => {
             placeholder="Enter valid Username"
             value={signUp.username}
           />
-          {errors.name.length > 5 ? <p>{errors.name}</p>: null}
+          {errors.username.length > 0 ? <p>{errors.username}</p>: null}
 
           <label htmlFor='password'>Password</label>
           <input
             value={signUp.password}
+            type= "password"
             name="password"
             id="password"
             onChange={handleChanges}
             placeholder="Enter valid password"
           />
+          {errors.password.length > 0 ? <p>{errors.password}</p>: null}
+
           <label htmlFor='repassword'>Password</label>
           <input
-            value={signUp.password}
+            value={signUp.repassword}
+            type= "password"
             name="repassword"
             id="repassword"
             onChange={handleChanges}
             placeholder="Re-enter password"
           />
             <hr></hr>
+
+            <label htmlFor='terms'>Terms and conditions</label>
+            <input type="checkbox"
+             id="terms" 
+             name="terms" 
+             checked={signUp.terms} 
+             onChange={handleChanges}
+            
+             />
         
-            <Button type="submit">Sign-Up!</Button>
+            <button className='submitButton' type="submit">Sign-Up!</button>
 
         </form>
-
+       
       );
     };
 

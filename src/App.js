@@ -1,26 +1,33 @@
 import React from 'react';
-import { Button, Card } from 'antd';
 import './App.css';
-import Login from './components/Login';
-import SignUp from './components/SignUp'
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Home from './components/Home';
+import ls from './components/Login&SignUp';
 import { Route } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
+
 
 const App = () => (
-  <div style={{
-    display:'flex'
-  }}>
 
-    <Card
-     title="LOGIN"
-     style={{ width: 300 }}>>
-     <Login/>
-     </Card>
-    <Card
-     title="SIGN UP"
-     style={{ width: 300 }}>
-     <SignUp/>
-     </Card>
-  </div>
+  
+
+    <div className='App'>
+
+    <FadeIn>
+      <Header/>
+    </FadeIn>
+
+    <Route exact path="/" component={Home}/>
+    <Route path="/Auction"/>
+    <Route path="/Login/SignUp" component={ls}/>
+    
+  <FadeIn>
+    <Footer/>
+  </FadeIn>
+    
+     </div>
+
 );
 
 
