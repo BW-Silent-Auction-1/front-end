@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/index';
+import auctionItems from './reducers/index';
 import App from './App';
 
 import './index.css';
@@ -10,7 +10,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 const store = configureStore({
-  reducer: rootReducer
+  reducer: auctionItems
 })
 
 ReactDOM.render(
