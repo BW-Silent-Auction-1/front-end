@@ -1,4 +1,7 @@
 body {
+  background-color: grey;
+  height: 100%;
+  width: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +13,57 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.Nav{
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.NavLink{
+  font-family: 'DM Mono', monospace;
+  font-size: large;
+  padding: 1rem;
+  width: 15%;
+  margin: 1rem;
+}
+.homeInfo{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 25rem;
+  line-height: 3.0;
+  margin: auto;
+  text-align: center;
+}
+
+.headers{  font-family: 'DM Mono', monospace;}
+
+p{  
+  font-family: 'DM Mono', monospace;
+}
+
+.footer{
+  height: 5rem;
+  width: 100%;
+  background-color: rgb(53, 53, 53);
+}
+
+body > #root > div {
+  height: 100vh;
+}
+
+.lsform{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.submitButton{
+  background-color: grey;
+  border: 1px solid rgb(23, 104, 255);
+  border-radius: .2rem;
+  color: rgb(23, 104, 255);
+
 }

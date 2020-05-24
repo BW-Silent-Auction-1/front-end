@@ -1,5 +1,19 @@
+@import '~antd/dist/antd.css';
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap');
+
+
+
 .App {
   text-align: center;
+  justify-content: space-between;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+}
+
+hr{
+  width: 100%;
 }
 
 .App-logo {
@@ -14,14 +28,33 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  font-family: 'DM Mono', monospace;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.loginDiv{
+  display: flex;
+  justify-content:space-around;
+
+}
+
+.App-info{
+  font-family: 'DM Mono', monospace;
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  align-items: center;
+  align-content: center;
+}
+
+.header-text{
+  color:black;
 }
 
 .App-link {
