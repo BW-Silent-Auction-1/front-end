@@ -6,9 +6,10 @@ const auctionItemsSlice = createSlice({
   initialState: [],
   reducers: {
     addAuctionItem(state = auctionItemsSlice.initialState, action) {
-      const { name, description, startingPrice } = action.payload
-      console.log({name, description, startingPrice})
+      const { image, name, description, startingPrice } = action.payload
+      console.log({image, name, description, startingPrice})
       state.push({
+        image: image,
         name: name,
         description: description,
         startingPrice: startingPrice,

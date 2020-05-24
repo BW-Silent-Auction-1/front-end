@@ -1,5 +1,5 @@
 import React from 'react';
-import AddAuctionItem from './AddAuctionItem';
+import AddAuctionItem from './Redux-Auth/AddAuctionItem';
 import './App.css';
 
 function App() {

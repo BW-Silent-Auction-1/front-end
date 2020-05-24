@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import auctionItemsReducer from '../auctionItemsSlice';
+import auctionItemsReducer from '../Redux-Auth/auctionItemsSlice';
 
 export default combineReducers({
   auctionItems: auctionItemsReducer

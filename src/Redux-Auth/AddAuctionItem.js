@@ -12,6 +12,7 @@ const mapDispatch = { addAuctionItem }
 
 const AddAuctionItem = ({ addAuctionItem }) => {
   const [auctionItem, setAuctionItem] = useState({
+    image: null,
     name: '',
     description: '',
     startingPrice: 0
@@ -27,16 +28,21 @@ const AddAuctionItem = ({ addAuctionItem }) => {
   const handleSubmit = event => {
     event.preventDefault()
     addAuctionItem(auctionItem)
-
-    // setTimeout(() => {
-    // }, 500)
-
-      setAuctionItem({
-        name: '',
-        description: '',
-        startingPrice: 0
-      })
+    setAuctionItem({
+      image: '',
+      name: '',
+      description: '',
+      startingPrice: 0
+    })
   }
+
+  // for image uploading
+  // const fileChangedHandler = event => {
+  //   setAuctionItem({ 
+  //     ...auctionItem,
+  //     image: event.target.files[0] 
+  //   })
+  // }
 
   console.log(auctionItem)
 
@@ -46,6 +52,14 @@ const AddAuctionItem = ({ addAuctionItem }) => {
 
       <div>
         <form onSubmit={handleSubmit}>
+          
+          {/* <input 
+            type='file'
+            name='image'
+            onChange={fileChangedHandler}
+            placeholder='Add an image'
+          /> */}
+
           <input 
             type='text'
             name='name'
