@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const auctionItemsSlice = createSlice({
   name: 'auctionItems',
-  initialState: [],
+  initialState: {
+    auctionItemsArray: []
+  },
   reducers: {
-    addAuctionItem(state = auctionItemsSlice.initialState, action) {
+    addAuctionItem(state, action) {
       const { image, name, description, startingPrice } = action.payload
       console.log({image, name, description, startingPrice})
-      state.push({
+      state.auctionItemsArray.push({
         image: image,
         name: name,
         description: description,

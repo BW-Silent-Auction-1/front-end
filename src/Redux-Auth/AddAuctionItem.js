@@ -2,15 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addAuctionItem } from './auctionItemsSlice';
 
-const mapDispatch = { addAuctionItem }
 
-// const auctionItem = {
-//   name: '',
-//   description: '',
-//   startingPrice: 0
-// }
-
-const AddAuctionItem = ({ addAuctionItem }) => {
+const AddAuctionItem = (props) => {
   const [auctionItem, setAuctionItem] = useState({
     image: null,
     name: '',
@@ -27,7 +20,7 @@ const AddAuctionItem = ({ addAuctionItem }) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    addAuctionItem(auctionItem)
+    props.addAuctionItem(auctionItem)
     setAuctionItem({
       image: '',
       name: '',
@@ -44,7 +37,7 @@ const AddAuctionItem = ({ addAuctionItem }) => {
   //   })
   // }
 
-  console.log(auctionItem)
+  console.log(props)
 
   return (
     <div>
@@ -88,8 +81,21 @@ const AddAuctionItem = ({ addAuctionItem }) => {
         </form>
       </div>
 
+      <div>
+        {/* {auctionItemsArray.map()} */}
+      </div>
+
     </div>
   )
 }
 
-export default connect(null, mapDispatch)(AddAuctionItem)
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    auctionItemsArray: state.auctionItems.auctionItemsArray
+  }
+}
+
+const mapDispatchToProps = { addAuctionItem }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddAuctionItem)
