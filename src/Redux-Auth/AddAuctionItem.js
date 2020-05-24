@@ -37,7 +37,7 @@ const AddAuctionItem = (props) => {
   //   })
   // }
 
-  console.log(props)
+  console.log('auctionItem + props', auctionItem, props)
 
   return (
     <div>
@@ -82,7 +82,15 @@ const AddAuctionItem = (props) => {
       </div>
 
       <div>
-        {/* {auctionItemsArray.map()} */}
+        {props.auctionItemsArray.map(item => {
+          return (
+            <div key={item.id}>
+              <p>{item.name}</p>
+              <p>{item.description}</p>
+              <p>{item.startingPrice}</p>
+            </div>
+          )
+        })}
       </div>
 
     </div>

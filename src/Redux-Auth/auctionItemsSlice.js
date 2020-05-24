@@ -7,6 +7,7 @@ const auctionItemsSlice = createSlice({
   },
   reducers: {
     addAuctionItem(state, action) {
+      console.log(state, action)
       const { image, name, description, startingPrice } = action.payload
       console.log({image, name, description, startingPrice})
       state.auctionItemsArray.push({
