@@ -85,9 +85,9 @@ const AddAuctionItem = (props) => {
         {props.auctionItemsArray.map(item => {
           return (
             <div key={item.id}>
-              <p>{item.name}</p>
-              <p>{item.description}</p>
-              <p>{item.startingPrice}</p>
+              <p>Item name: {item.name}</p>
+              <p>Description: {item.description}</p>
+              <p>Starting price: {item.startingPrice}</p>
             </div>
           )
         })}
