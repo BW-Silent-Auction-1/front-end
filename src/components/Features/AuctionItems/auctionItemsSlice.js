@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+let nextId = 0
+
 const auctionItemsSlice = createSlice({
   name: 'auctionItems',
   initialState: {
@@ -11,6 +13,7 @@ const auctionItemsSlice = createSlice({
       const { image, name, description, startingPrice } = action.payload
       console.log({image, name, description, startingPrice})
       state.auctionItemsArray.push({
+        id: nextId++,
         image: image,
         name: name,
         description: description,

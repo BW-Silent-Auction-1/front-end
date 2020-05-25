@@ -18,11 +18,11 @@ const App = () => (
     </FadeIn>
 
     <Route exact path="/" component={Home}/>
-    <Route path="/Auction"/>
     <Route path="/Login/SignUp" component={ls}/>
+    <Route path="/Auction"/>
+    <Route path='/auctionitems' component={AddAuctionItem} />
     
     <FadeIn>
-      <AddAuctionItem />
       <Footer/>
     </FadeIn>
 
