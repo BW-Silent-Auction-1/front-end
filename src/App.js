@@ -9,7 +9,6 @@ import FadeIn from 'react-fade-in';
 import AddAuctionItem from './Redux-Auth/AddAuctionItem';
 
 import './App.css';
-import { addAuctionItem } from './Redux-Auth/auctionItemsSlice';
 
 const App = () => (
   <div className='App'>
@@ -23,7 +22,7 @@ const App = () => (
     <Route path="/Login/SignUp" component={ls}/>
     
     <FadeIn>
-      <addAuctionItem />
+      <AddAuctionItem />
       <Footer/>
     </FadeIn>
 
