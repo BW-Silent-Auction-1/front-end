@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import ls from './components/Login&SignUp';
 import FadeIn from 'react-fade-in';
-import AddAuctionItem from './Redux-Auth/AddAuctionItem';
+import AddAuctionItem from './components/Features/AuctionItems/AddAuctionItem';
 
 import './App.css';
 
