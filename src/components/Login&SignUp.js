@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from 'antd'
+import { Card } from 'antd'
 import Login from './Login'
 import SignUp from './SignUp'
 import FadeIn from 'react-fade-in';
