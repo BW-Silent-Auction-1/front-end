@@ -23,6 +23,3 @@ const auctionItemsSlice = createSlice({
 export const { addAuctionItem } = auctionItemsSlice.actions
 
 export default auctionItemsSlice.reducer
-
-// for testing purposes
-// console.log(addAuctionItem({ id: 24, name: 'test', description: 'tester', startingPrice: 6969 }))
