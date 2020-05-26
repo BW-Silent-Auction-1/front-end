@@ -1,14 +1,22 @@
 import React from 'react';
-import {Card , EllipsisOutlined , EditOutlined , SettingOutlined  } from 'antd';
+import AuctionCard from './AuctionCard';
 
-const AuctionItems = () => {
+const AuctionItems = props => (
 
-return (
-<div>
 
-</div>
-)
-}
+  
+    <div>
+      <AuctionCard
+        image={props.post.image}
+        itemName={props.post.itemName}
+        description={props.post.description}
+        bidPrice={props.post.bidPrice}
+      />
+    </div>
+ 
+);
+
 
 
 export default AuctionItems;
+

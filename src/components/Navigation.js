@@ -12,7 +12,7 @@ const Navigation = () => {
         
         <Button  className='antButton' type='ghost'> <Link className="NavLink" to="/">Home</Link> </Button>
        
-        <Button  className='antButton' type='ghost'> <Link className="NavLink" to="/auctionitems">Auctions</Link> </Button>
+        <Button  className='antButton' type='ghost'> <Link className="NavLink" to="/AuctionPost">Auctions</Link> </Button>
       
         <Button  className='antButton' type='ghost'> <Link className="NavLink" to="/Login/SignUp">Login/Sign Up</Link></Button>
         

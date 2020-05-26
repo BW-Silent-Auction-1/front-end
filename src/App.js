@@ -8,6 +8,7 @@ import ls from './components/Login&SignUp';
 import FadeIn from 'react-fade-in';
 import AddAuctionItem from './components/Features/AuctionItems/AddAuctionItem';
 import { bounce } from 'react-animations';
+import AuctionPost from './components/AuctionPost';
 import Radium, {StyleRoot} from 'radium';
 import './App.css';
 
@@ -28,7 +29,7 @@ const App = () => (
     <Route exact path="/" component={Home}/>
     <Route path="/Login/SignUp" component={ls}/>
     <Route path="/Auction"/>
-    <Route path='/auctionitems' component={AddAuctionItem} />
+    <Route path='/AuctionPost' component={AuctionPost} />
     <Route path='/Account' component={Account}/>
 
     <FadeIn>
