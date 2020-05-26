@@ -10,6 +10,7 @@ import AddAuctionItem from './components/Features/AuctionItems/AddAuctionItem';
 import { bounce } from 'react-animations';
 import AuctionPost from './components/AuctionPost';
 import Radium, {StyleRoot} from 'radium';
+import SingleItem from './components/SingleItem';
 import './App.css';
 
 const styles = {
@@ -31,6 +32,7 @@ const App = () => (
     <Route path="/Auction"/>
     <Route path='/AuctionPost' component={AuctionPost} />
     <Route path='/Account' component={Account}/>
+    <Route path='/SingleItem' component={SingleItem}/>
 
     <FadeIn>
       <Footer/>

@@ -86,8 +86,9 @@ body > #root > div {
 
 }
 .ant-card.ant-card-bordered{
-  width:20rem;
+  width:25rem;
   border:'1px solid black';
+  margin-top: 1rem;
 }
 
 h1{

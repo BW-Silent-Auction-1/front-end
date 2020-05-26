@@ -1,9 +1,7 @@
 import React from 'react';
 import { Card , Button } from 'antd'
-import { Link } from 'react-router-dom'
-import SingleItem from './SingleItem';
 
-const AuctionCard = (props) => 
+const SingleItem = (props) => 
 
      (
         
@@ -16,19 +14,34 @@ const AuctionCard = (props) =>
              <p>{props.description}</p>
              <p style={{border:'1px solid dodgerblue'}}>Current Bid : <span style={{color:'green'}}>{props.bidPrice}</span></p>
 
-        <Button type='primary'><Link to={SingleItem}>View Item</Link></Button>
+
         <Button type='danger'>Place Bid</Button>
 
         </Card>
         
     )
 
+     
+
+export default SingleItem;
+
+/*
+const [item, setitem] = useState();
+
+const {id} = useParams()
 
 
+useEffect(() => {
+  
 
+       axios
+        .get(`${id}`)
+        .then(response => {
+          setMovie(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
 
-
-
-
-
-export default AuctionCard;
+  },[id]);
+  */

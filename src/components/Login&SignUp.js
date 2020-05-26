@@ -3,14 +3,14 @@ import { Card } from 'antd'
 import Login from './Login'
 import SignUp from './SignUp'
 import FadeIn from 'react-fade-in';
-import { fadeInDown , zoomIn } from 'react-animations';
+import { fadeInDown , flash } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 
 
 const bing = {
   swing: {
-    animation: '1 10s',
-    animationName: Radium.keyframes(zoomIn, 'zoomIn')
+    animation: '1.5 2s',
+    animationName: Radium.keyframes(flash, 'flash')
   }
 }
 
@@ -26,7 +26,7 @@ const ls = () => {
   return (
     <div className='lsform' style={{display:'flex', flexDirection:'space-between', padding:'3rem'}}>
     
-    <FadeIn transitionDuration='5000' delay='500'>
+    <FadeIn transitionDuration='4000' delay='500'>
         <Card title="Login">
           <Login></Login>
         </Card>
@@ -41,7 +41,7 @@ const ls = () => {
         </div>
       
 
-        <FadeIn transitionDuration='5000' delay='500'>
+        <FadeIn transitionDuration='4000' delay='500'>
         <Card title="Sign-Up">
           <SignUp></SignUp>
         </Card>
