@@ -32,7 +32,7 @@ const alert = {
 const schema = yup.object().shape({
     username: yup.string().required("Please enter a username"),
     password: yup.string().min(4,"Seems a little short").required("Please enter a password"),
-    repassword:yup.string().required()
+    repassword:yup.string().required("Please confirm your password")
 })
 
 
@@ -60,9 +60,11 @@ const SignUp = props  => {
       const submitForm = (event) => {
         event.preventDefault();
         console.log("Submitted!");
+        if(signUp.password === signUp.repassword){
         axios.post('https://reqres.in/api/users', signUp)
         .then( response => console.log(response))
         .catch(err => console.log(err))
+      } else {}
       };
 
       const [errors, setErrors] = useState({
@@ -129,6 +131,8 @@ const SignUp = props  => {
             onChange={handleChanges}
             placeholder="Re-enter password"
           />
+          {errors.repassword.length > 0 ? <StyleRoot><p style={alert.root}>{errors.repassword}</p></StyleRoot>: null}
+          
             <hr></hr>
           
             <StyleRoot>

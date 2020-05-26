@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
-
+import { Link } from 'react-router-dom'
 
 const schema = yup.object().shape({
     username: yup.string().required("Please enter a username"),
@@ -109,7 +109,7 @@ const Login = props  => {
       {errors.password.length > 0 ? <StyleRoot><p style={alert.root}>{errors.password}</p></StyleRoot>: null}
         <hr></hr>
         <StyleRoot>
-        <button style={btn.root} className='submitButton' >Login</button>
+        <button style={btn.root} className='submitButton' ><Link to='Account'>Login</Link></button>
         </StyleRoot>
     </form>
   );

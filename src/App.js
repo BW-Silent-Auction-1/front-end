@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
+import Account from './components/Account';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -29,7 +29,8 @@ const App = () => (
     <Route path="/Login/SignUp" component={ls}/>
     <Route path="/Auction"/>
     <Route path='/auctionitems' component={AddAuctionItem} />
-    
+    <Route path='/Account' component={Account}/>
+
     <FadeIn>
       <Footer/>
     </FadeIn>
