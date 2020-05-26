@@ -1,6 +1,8 @@
 body {
-  background-color: grey;
-  height: 100%;
+  background-image: url('./blue.jpg');
+  background-position: static;
+  background-size: cover;
+  background-attachment: fixed;
   width: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -32,7 +34,9 @@ code {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 25rem;
+  align-content: center;
+  align-items: center;
+  width: 30rem;
   line-height: 3.0;
   margin: auto;
   text-align: center;
@@ -42,12 +46,17 @@ code {
 
 p{  
   font-family: 'DM Mono', monospace;
+  font-size: large;
 }
 
 .footer{
   height: 5rem;
   width: 100%;
-  background-color: rgb(53, 53, 53);
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: start;
+  padding: 1rem;
 }
 
 body > #root > div {
@@ -58,12 +67,47 @@ body > #root > div {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  width: 100%;
+}
+
+.center{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .submitButton{
   background-color: grey;
-  border: 1px solid rgb(23, 104, 255);
+  border: 1px solid rgb(43, 109, 231);
+  background-color: rgb(53, 53, 53);
   border-radius: .2rem;
-  color: rgb(23, 104, 255);
+  color: rgb(51, 115, 235);
 
+}
+.ant-card.ant-card-bordered{
+  width:20rem;
+  border:'1px solid black';
+}
+
+h1{
+  font-family: 'DM Mono', monospace;
+}
+
+
+@media(max-width: 500px) {
+  .Nav{
+   flex-direction: column;
+   width: 100%;
+  }
+  .ant-page-header{
+    width: 100%;
+  }
+  .homeInfo{
+    width: 80%;
+  }
+  .lsform{
+    flex-direction: column;
+  }
+  .ant-card.ant-card-bordered{
+    width: 100%;
+  }
 }

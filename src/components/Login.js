@@ -2,12 +2,32 @@ import React, { useState } from 'react';
 import '../App.css';
 import * as yup from 'yup';
 import axios from 'axios';
+import { pulse } from 'react-animations';
+import Radium, {StyleRoot} from 'radium';
+
 
 const schema = yup.object().shape({
     username: yup.string().required("Please enter a username"),
-    password: yup.string().required("Please enter your password"),
+    password: yup.string().required("Please enter a password"),
     terms: yup.boolean()
 })
+
+const alert = {
+    root: {
+          color:'red',
+        animation: '2 .5s',
+      animationName: Radium.keyframes(pulse, 'pulse')
+      }
+  }
+
+const btn = {
+    root: {
+      ":hover": {
+        Color: "white",
+        animation: '2 .5s',
+      animationName: Radium.keyframes(pulse, 'pulse')
+      }
+  }}
 
 const Login = props  => {
   const [login, setlogin] = useState({
@@ -75,7 +95,7 @@ const Login = props  => {
         placeholder="Enter valid Username"
         value={login.username}
       />
-      {errors.username.length > 0 ? <p>{errors.username}</p>: null}
+      {errors.username.length > 0 ? <StyleRoot><p style={alert.root}>{errors.username}</p></StyleRoot>: null}
 
       <label htmlFor='password'>Password</label>
       <input
@@ -86,11 +106,11 @@ const Login = props  => {
         placeholder="Please enter a valid password"
         onChange={handleChanges}
       />
-      {errors.password.length > 0 ? <p>{errors.password}</p>: null}
+      {errors.password.length > 0 ? <StyleRoot><p style={alert.root}>{errors.password}</p></StyleRoot>: null}
         <hr></hr>
-    
-        <button className='submitButton' onClick="submit">Login</button>
-
+        <StyleRoot>
+        <button style={btn.root} className='submitButton' >Login</button>
+        </StyleRoot>
     </form>
   );
     };

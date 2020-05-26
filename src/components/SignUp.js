@@ -2,13 +2,37 @@ import React, { useState } from 'react';
 import '../App.css';
 import * as yup from 'yup';
 import axios from 'axios';
+import { pulse } from 'react-animations';
+import Radium, {StyleRoot} from 'radium';
+
+
+
+
+const btn = {
+    root: {
+      ":hover": {
+        Color: "white",
+        animation: '2 .5s',
+      animationName: Radium.keyframes(pulse, 'pulse')
+      }
+  }}
+
+  
+const alert = {
+    root: {
+          color:'red',
+        animation: '2 .5s',
+      animationName: Radium.keyframes(pulse, 'pulse')
+      }
+  }
+
+
 
 
 const schema = yup.object().shape({
     username: yup.string().required("Please enter a username"),
     password: yup.string().min(4,"Seems a little short").required("Please enter a password"),
-    repassword:yup.string(),
-    terms: yup.boolean().required("Please read the terms")
+    repassword:yup.string().required()
 })
 
 
@@ -22,7 +46,6 @@ const SignUp = props  => {
         username: "",
         password:"",
         repassword:"",
-        terms:false
       });
     
       const handleChanges = event => {
@@ -46,7 +69,6 @@ const SignUp = props  => {
         username: "",
         password:"",
         repassword:"",
-        terms: ""
       });
 
       const validate = (event) => {
@@ -85,7 +107,7 @@ const SignUp = props  => {
             placeholder="Enter valid Username"
             value={signUp.username}
           />
-          {errors.username.length > 0 ? <p>{errors.username}</p>: null}
+          {errors.username.length > 0 ? <StyleRoot><p style={alert.root}>{errors.username}</p> </StyleRoot>: null}
 
           <label htmlFor='password'>Password</label>
           <input
@@ -96,7 +118,7 @@ const SignUp = props  => {
             onChange={handleChanges}
             placeholder="Enter valid password"
           />
-          {errors.password.length > 0 ? <p>{errors.password}</p>: null}
+          {errors.password.length > 0 ? <StyleRoot><p style={alert.root}>{errors.password}</p></StyleRoot>: null}
 
           <label htmlFor='repassword'>Password</label>
           <input
@@ -108,18 +130,10 @@ const SignUp = props  => {
             placeholder="Re-enter password"
           />
             <hr></hr>
-
-            <label htmlFor='terms'>Terms and conditions</label>
-            <input type="checkbox"
-             id="terms" 
-             name="terms" 
-             checked={signUp.terms} 
-             onChange={handleChanges}
-            
-             />
-        
-            <button className='submitButton' type="submit">Sign-Up!</button>
-
+          
+            <StyleRoot>
+            <button style={btn.root} className='submitButton' type="submit">Sign-Up!</button>
+            </StyleRoot>
         </form>
        
       );

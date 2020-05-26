@@ -7,8 +7,16 @@ import Home from './components/Home';
 import ls from './components/Login&SignUp';
 import FadeIn from 'react-fade-in';
 import AddAuctionItem from './components/Features/AuctionItems/AddAuctionItem';
-
+import { bounce } from 'react-animations';
+import Radium, {StyleRoot} from 'radium';
 import './App.css';
+
+const styles = {
+  bounce: {
+    animation: 'x 1s',
+    animationName: Radium.keyframes(bounce, 'bounce')
+  }
+}
 
 const App = () => (
   <div className='App'>
