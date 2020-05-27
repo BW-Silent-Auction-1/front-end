@@ -13,7 +13,7 @@ const menu = (
     </Menu.Item>
 
     <Menu.Item>
-     <Button  className='antButton' type='ghost' style={{width:'100%'}}> <Link className="NavLink" to="/AddItem">Post An Item</Link></Button>
+     <Button  className='antButton' type='ghost' style={{width:'100%'}}> <Link className="NavLink" to="/AE">Post/Edit An Item</Link></Button>
     </Menu.Item>
 
     <Menu.Item>

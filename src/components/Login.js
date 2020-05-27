@@ -86,7 +86,7 @@ const Login = props  => {
       className="form" 
       onSubmit={submitForm}
     >
-      <label htmlFor="username">  Username  </label>
+      <label htmlFor="username">  Username </label>
       <input
         onChange={handleChanges}
         id="username"

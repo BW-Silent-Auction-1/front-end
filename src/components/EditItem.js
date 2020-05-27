@@ -10,7 +10,6 @@ const schema = yup.object().shape({
     username: yup.string(),
     name: yup.string().required("Please enter a Name of your item."),
     description: yup.string().required("Please describe your item."),
-    price: yup.string().required("Please enter a starting price.")
 })
 
 
@@ -36,8 +35,7 @@ const AddItem = props  => {
   const [addItem, setAddItem] = useState({
     username:"",
     name:"",
-    description:"",
-    price:""
+    description:""
   })
   
   const handleChanges = event => {
@@ -61,7 +59,6 @@ const AddItem = props  => {
     username:"",
     name:"",
     description:"",
-    price:""
   });
 
   const validate = (event) => {
@@ -121,28 +118,18 @@ const AddItem = props  => {
         value={addItem.description}
         name="description"
         id="description"
-        type="text field"
+        type="text"
         placeholder="Please enter a description"
         onChange={handleChanges}
       />
 
 {errors.description.length > 0 ? <StyleRoot><p style={alert.root}>{errors.description}</p></StyleRoot>: null}
 
-    <label htmlFor='price'>Starting Bid/Price</label>
-      <input
-        value={addItem.password}
-        name="price"
-        id="price"
-        type="number"
-        placeholder="Please enter a starting bid/price"
-        onChange={handleChanges}
-      />
 
-{errors.price.length > 0 ? <StyleRoot><p style={alert.root}>{errors.price}</p></StyleRoot>: null}
 
         <hr></hr>
         <StyleRoot>
-        <button style={btn.root} className='submitButton' ><Link to='/AuctionPost'>Post Item</Link></button>
+        <button style={btn.root} className='submitButton' ><Link to='/AuctionPost'>Edit Item</Link></button>
         </StyleRoot>
     </form>
   );

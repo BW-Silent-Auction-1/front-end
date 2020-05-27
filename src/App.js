@@ -11,7 +11,7 @@ import { bounce } from 'react-animations';
 import AuctionPost from './components/AuctionPost';
 import Radium, {StyleRoot} from 'radium';
 import SingleItem from './components/SingleItem';
-import AddItem from './components/AddItem';
+import AE from './components/Add&Edit';
 import './App.css';
 
 const styles = {
@@ -33,7 +33,7 @@ const App = () => (
     <Route path="/Auction"/>
     <Route path='/AuctionPost' component={AuctionPost} />
     <Route path='/enter' component={AuctionPost}/>
-    <Route path='/AddItem' component={AddItem}/>
+    <Route path='/AE' component={AE}/>
     <Route path='/SingleItem' component={SingleItem}/>
 
     <FadeIn>
