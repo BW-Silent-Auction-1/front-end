@@ -64,7 +64,7 @@ const SignUp = props  => {
         axios.post('https://reqres.in/api/users', signUp)
         .then( response => console.log(response))
         .catch(err => console.log(err))
-      } else {}
+      } else {window.alert("Please make sure your password matches!")}
       };
 
       const [errors, setErrors] = useState({
