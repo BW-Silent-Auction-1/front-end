@@ -7,10 +7,11 @@ console.log(props),
   
     <div>
       <AuctionCard
-        image={props.post.image}
-        itemName={props.post.name}
-        description={props.post.description}
-        bidPrice={props.post.price}
+        id={props.id}
+        auctioneer_id={props.auctioneer_id}
+        name={props.name}
+        description={props.description}
+        price={props.price}
       />
     </div>
  

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import {Button} from 'antd'
+import Drop from './Drop';
 
 
 const Navigation = () => {
@@ -10,11 +11,7 @@ const Navigation = () => {
 
       <div className='Nav'>
         
-        <Button  className='antButton' type='ghost'> <Link className="NavLink" to="/">Home</Link> </Button>
-       
-        <Button  className='antButton' type='ghost'> <Link className="NavLink" to="/AuctionPost">Auctions</Link> </Button>
-      
-        <Button  className='antButton' type='ghost'> <Link className="NavLink" to="/Login/SignUp">Login/Sign Up</Link></Button>
+
         
       </div>
     

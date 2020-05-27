@@ -11,6 +11,7 @@ import { bounce } from 'react-animations';
 import AuctionPost from './components/AuctionPost';
 import Radium, {StyleRoot} from 'radium';
 import SingleItem from './components/SingleItem';
+import AE from './components/Add&Edit';
 import './App.css';
 
 // Back end API
@@ -34,7 +35,8 @@ const App = () => (
     <Route path="/Login/SignUp" component={ls}/>
     <Route path="/Auction"/>
     <Route path='/AuctionPost' component={AuctionPost} />
-    <Route path='/Account' component={Account}/>
+    <Route path='/enter' component={AuctionPost}/>
+    <Route path='/AE' component={AE}/>
     <Route path='/SingleItem' component={SingleItem}/>
 
     <FadeIn>
