@@ -13,6 +13,9 @@ import Radium, {StyleRoot} from 'radium';
 import SingleItem from './components/SingleItem';
 import './App.css';
 
+// Back end API
+// https://silentauction-bw.herokuapp.com/
+
 const styles = {
   bounce: {
     animation: 'x 1s',

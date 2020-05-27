@@ -3,14 +3,14 @@ import AuctionCard from './AuctionCard';
 
 const AuctionItems = props => (
 
-
+console.log(props),
   
     <div>
       <AuctionCard
         image={props.post.image}
-        itemName={props.post.itemName}
+        itemName={props.post.name}
         description={props.post.description}
-        bidPrice={props.post.bidPrice}
+        bidPrice={props.post.price}
       />
     </div>
  
