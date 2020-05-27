@@ -1,30 +1,55 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
+import axios from 'axios';
 import AuctionItems from "./AuctionItems";
 import dummyData from "../dummy-data.js";
-
+import FadeIn from "react-fade-in";
 
 
 const PostsPage = (props) => {
 
-  console.log(props)
+  const [info , setInfo] =useState([])
 
-  const [post , setPost] = useState(dummyData)
-
+  useEffect(() => {
+      axios
+      .get("https://silentauction-bw.herokuapp.com/item")
+      .then(response => {
+          setInfo(response.data);
+      });
+  
+  }, []);
+  
+  
+  useEffect(() => {
+  console.log("data", info);
+  }, [info])
+  
+  
   return (
-    <div className="PWrapper">
-      
-      {dummyData.map(post => {
-        return ( 
+  
+  <FadeIn transitionDuration='3000' delay='400'>
+    <h1>Welcome to the current auctions page,</h1>
+    <p> Here you can view current items up for bidding!</p>
+  <div className='PWrapper'>
+    
+ 
+      {info.map(item =>{
+          return    <AuctionItems
+          id = {item.id}
+          auctioneer_id = {item.auctioneer_id}
+          name = {item.name}
+          description = {item.description}
+          price = {item.price}
+          recorded_on = {item.recorded_on}
+          />
           
-            <AuctionItems 
-            post={post}
-        />
-        
-        );
       })}
 
-    </div>
+  
+  </div>
+  </FadeIn>  
   );
-};
+  };
 
 export default PostsPage;
+
+

@@ -7,10 +7,13 @@ import Radium, {StyleRoot} from 'radium';
 import { Link } from 'react-router-dom'
 
 const schema = yup.object().shape({
-    username: yup.string().required("Please enter a username"),
-    password: yup.string().required("Please enter a password"),
-    terms: yup.boolean()
+    username: yup.string(),
+    name: yup.string().required("What is the name of your product?"),
+    description: yup.string().required("Please describe your item."),
+    price: yup.number().required("Please enter a starting price.")
 })
+
+
 
 const alert = {
     root: {
@@ -29,32 +32,36 @@ const btn = {
       }
   }}
 
-const Login = props  => {
-  const [login, setlogin] = useState({
-    username: "",
-    password:"",
-  });
+const AddItem = props  => {
+  const [addItem, setAddItem] = useState({
+    username:"",
+    name:"",
+    description:"",
+    price:""
+  })
   
   const handleChanges = event => {
     event.persist()
     validate(event)
-    console.log(login, event.target.checked);
+    console.log(addItem, event.target.checked);
 
     let value = event.target.type === 'checkbox' ? event.target.checked :event.target.value 
-    setlogin({...login, [event.target.name]: value});
+    setAddItem({...addItem, [event.target.name]: value});
   };
 
   const submitForm = (event) => {
     event.preventDefault();
     console.log("Submitted!");
-    axios.post('https://reqres.in/api/users', login)
+    axios.post('https://reqres.in/api/users', addItem)
     .then( response => console.log(response))
     .catch(err => console.log(err))
   };
 
   const [errors, setErrors] = useState({
-    username: "",
-    password:"",
+    username:"",
+    name:"",
+    description:"",
+    price:""
   });
 
   const validate = (event) => {
@@ -93,23 +100,23 @@ const Login = props  => {
         type="text"
         name="username"
         placeholder="Enter valid Username"
-        value={login.username}
+        value={addItem.username}
       />
-      {errors.username.length > 0 ? <StyleRoot><p style={alert.root}>{errors.username}</p></StyleRoot>: null}
+
 
       <label htmlFor='password'>Password</label>
       <input
-        value={login.password}
+        value={addItem.password}
         name="password"
         id="password"
         type="password"
         placeholder="Please enter a valid password"
         onChange={handleChanges}
       />
-      {errors.password.length > 0 ? <StyleRoot><p style={alert.root}>{errors.password}</p></StyleRoot>: null}
+
         <hr></hr>
         <StyleRoot>
-        <button style={btn.root} className='submitButton' ><Link to='/AuctionPost'>Login</Link></button>
+        <button style={btn.root} className='submitButton' ><Link to='/AuctionPost'>Start Auction</Link></button>
         </StyleRoot>
     </form>
   );
@@ -117,4 +124,4 @@ const Login = props  => {
 
 
 
-export default Login;
+export default AddItem;
