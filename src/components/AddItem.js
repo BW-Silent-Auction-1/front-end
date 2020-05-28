@@ -33,6 +33,7 @@ const btn = {
   }}
 
 const AddItem = props  => {
+  console.log('AddItem props', props)
   const [addItem, setAddItem] = useState({
     username:"",
     name:"",
@@ -53,7 +54,9 @@ const AddItem = props  => {
     event.preventDefault();
     console.log("Submitted!");
     axios.post('https://silentauction-bw.herokuapp.com/auctioneer/1/items', addItem)
-    .then( response => console.log(response))
+    .then( response => {
+      console.log(response)
+    })
     .catch(err => console.log(err))
   };
 
@@ -142,8 +145,8 @@ const AddItem = props  => {
 
         <hr></hr>
         <StyleRoot>
-        <button style={btn.root} className='submitButton' >Add Item</button>
         {/* <Link to='/AuctionPost'>Post Item</Link> */}
+        <button style={btn.root} className='submitButton'>Post Item</button>
         </StyleRoot>
     </form>
   );
