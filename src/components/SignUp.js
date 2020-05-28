@@ -30,7 +30,7 @@ const alert = {
 
 
 const schema = yup.object().shape({
-    username: yup.string().required("Please enter a username"),
+    name: yup.string().required("Please enter a username"),
     password: yup.string().min(4,"Seems a little short").required("Please enter a password"),
     repassword:yup.string().required("Please confirm your password")
 })
@@ -43,9 +43,13 @@ const SignUp = props  => {
 
 
     const [signUp, setSignUp] = useState({
-        username: "",
+        name: "",
         password:"",
         repassword:"",
+        'accountType': {
+          'auctioneer': false,
+          'bidder': false
+        }
       });
     
       const handleChanges = event => {
@@ -61,7 +65,7 @@ const SignUp = props  => {
         event.preventDefault();
         console.log("Submitted!");
         if(signUp.password === signUp.repassword){
-        axios.post('https://reqres.in/api/users', signUp)
+        axios.post('https://silentauction-bw.herokuapp.com/auctioneer', signUp)
         .then( response => console.log(response))
         .catch(err => console.log(err))
       } else {window.alert("Please make sure your password matches!")}
@@ -105,9 +109,9 @@ const SignUp = props  => {
             onChange={handleChanges}
             id="username"
             type="text"
-            name="username"
+            name="name"
             placeholder="Enter valid Username"
-            value={signUp.username}
+            value={signUp.name}
           />
           {errors.username.length > 0 ? <StyleRoot><p style={alert.root}>{errors.username}</p> </StyleRoot>: null}
 
@@ -132,7 +136,7 @@ const SignUp = props  => {
             placeholder="Re-enter password"
           />
           {errors.repassword.length > 0 ? <StyleRoot><p style={alert.root}>{errors.repassword}</p></StyleRoot>: null}
-          
+
             <hr></hr>
           
             <StyleRoot>

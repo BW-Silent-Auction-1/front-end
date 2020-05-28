@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 let nextId = 0
 
@@ -13,12 +14,16 @@ const auctionItemsSlice = createSlice({
       const { image, name, description, startingPrice } = action.payload
       console.log({image, name, description, startingPrice})
       state.auctionItemsArray.push({
-        id: nextId++,
+        // id: nextId++,
         image: image,
         name: name,
         description: description,
         startingPrice: startingPrice,
       })
+
+
+
+
     },
   }
 })
