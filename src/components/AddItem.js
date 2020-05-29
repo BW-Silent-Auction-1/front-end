@@ -4,14 +4,22 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
+import Moment from 'react-moment';
+
 
 const schema = yup.object().shape({
     username: yup.string(),
     name: yup.string().required("Please enter a Name of your item."),
     description: yup.string().required("Please describe your item."),
+    image:yup.string(),
+    imageLink: yup.string(),
+    dateStart:yup.string().required("Please pick your auction dates."),
+    dateEnd:yup.string().required("Please pick your auction dates."),
     price: yup.string().required("Please enter a starting price.")
 })
+
 
 
 
@@ -37,6 +45,10 @@ const AddItem = props  => {
     username:"",
     name:"",
     description:"",
+    imageLink:"",
+    image:"",
+    dateStart:"",
+    dateEnd:"",
     price:""
   })
   
@@ -52,7 +64,7 @@ const AddItem = props  => {
   const submitForm = (event) => {
     event.preventDefault();
     console.log("Submitted!");
-    axios.post('https://reqres.in/api/users', addItem)
+    axios.put('https://silentauction-bw.herokuapp.com/auctioneer/:id/items', addItem)
     .then( response => console.log(response))
     .catch(err => console.log(err))
   };
@@ -61,6 +73,10 @@ const AddItem = props  => {
     username:"",
     name:"",
     description:"",
+    image:"",
+    imageLink:"",
+    dateStart:"",
+    dateEnd:"",
     price:""
   });
 
@@ -125,8 +141,38 @@ const AddItem = props  => {
         placeholder="Please enter a description"
         onChange={handleChanges}
       />
-
 {errors.description.length > 0 ? <StyleRoot><p style={alert.root}>{errors.description}</p></StyleRoot>: null}
+
+<hr></hr>
+
+    <label htmlFor='Image'>Upload or Link Image</label>
+
+    <input
+    name="imageLink"
+    type="text"
+    id="imageLink"
+     onChange={handleChanges}/>
+     
+
+      <input type="file"
+      name="image"
+      id="image"
+       onChange={handleChanges}/>
+
+       
+    <FadeIn>
+       <img style={{width:'100%'}}src={addItem.imageLink}></img>
+    </FadeIn>
+    
+
+
+
+
+
+
+
+
+<hr></hr>
 
     <label htmlFor='price'>Starting Bid/Price</label>
       <input

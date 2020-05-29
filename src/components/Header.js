@@ -1,6 +1,5 @@
 import React from 'react';
 import { PageHeader } from 'antd';
-import Navigation from './Navigation'
 import Drop from './Drop'
 
 
@@ -15,7 +14,9 @@ const Header = () => {
         FontColor='White'
       >
         <Drop style={{}}></Drop>
-    <Navigation />
+
+   
+
     </PageHeader>
   )
 }
