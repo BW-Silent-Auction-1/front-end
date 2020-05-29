@@ -4,7 +4,7 @@ export const axiosWithAuth = () => {
   const token = localStorage.getItem('token')
 
   return axios.create({
-    baseURL: 'backend api goes here',
+    baseURL: 'https://silentauction-bw.herokuapp.com/',
     headers: {
       Authorization: token
     }

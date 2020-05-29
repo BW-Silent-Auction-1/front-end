@@ -1,4 +1,5 @@
 import React, { useState , useEffect } from "react";
+import { connect } from 'react-redux';
 import axios from 'axios';
 import AuctionItems from "./AuctionItems";
 import dummyData from "../dummy-data.js";
@@ -17,6 +18,7 @@ const PostsPage = (props) => {
       });
   
   }, []);
+
   
   
   useEffect(() => {
@@ -50,6 +52,7 @@ const PostsPage = (props) => {
   );
   };
 
-export default PostsPage;
+
+export default connect(null, {})(PostsPage);
 
 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import '../App.css';
-import * as yup from 'yup';
 import axios from 'axios';
+import * as yup from 'yup';
+import { Link } from 'react-router-dom'
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { addAuctionItem } from './Features/AuctionItems/auctionItemsSlice';
+import '../App.css';
 
 const schema = yup.object().shape({
     username: yup.string(),
@@ -53,11 +55,7 @@ const AddItem = props  => {
   const submitForm = (event) => {
     event.preventDefault();
     console.log("Submitted!");
-    axios.post('https://silentauction-bw.herokuapp.com/auctioneer/1/items', addItem)
-    .then( response => {
-      console.log(response)
-    })
-    .catch(err => console.log(err))
+    props.addAuctionItem(addItem)
   };
 
   const [errors, setErrors] = useState({
@@ -152,6 +150,8 @@ const AddItem = props  => {
   );
     };
 
+const mapStateToProps = null
 
+const mapDispatchToProps = { addAuctionItem }
 
-export default AddItem;
+export default connect(mapStateToProps, mapDispatchToProps)(AddItem);

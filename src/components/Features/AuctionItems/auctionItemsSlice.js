@@ -10,24 +10,26 @@ const auctionItemsSlice = createSlice({
   },
   reducers: {
     addAuctionItem(state, action) {
-      console.log(state, action)
-      const { image, name, description, startingPrice } = action.payload
-      console.log({image, name, description, startingPrice})
-      state.auctionItemsArray.push({
-        // id: nextId++,
-        image: image,
-        name: name,
-        description: description,
-        startingPrice: startingPrice,
-      })
-
-
-
-
-    },
-  }
+      axios
+        .post('https://silentauction-bw.herokuapp.com/auctioneer/1/items', action.payload)
+        .then( response => {
+        console.log(response, action.payload)
+        })
+        .catch(err => console.log(err))  
+    }
+  },
+    // getAuctionItems(state, action) {
+    //   axios.get('https://silentauction-bw.herokuapp.com/item')
+    //     .then(response => {
+    //       console.log('getAuctionItems req res', response)
+    //       // state.auctionItemsArray.push(response.data)
+    //       const auctionItemsArr = response.data
+    //       return auctionItemsArr 
+    //     })
+    //     .catch(err => console.log(err))
+    // }
 })
 
-export const { addAuctionItem } = auctionItemsSlice.actions
+export const { addAuctionItem, getAuctionItems } = auctionItemsSlice.actions
 
 export default auctionItemsSlice.reducer

@@ -5,6 +5,8 @@ import axios from 'axios';
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 
+import { axiosWithAuth } from '../utilities/axiosWithAuth';
+
 
 
 
@@ -40,16 +42,14 @@ const schema = yup.object().shape({
 
 const SignUp = props  => {
 
+  const [isLoading, setIsLoading] = useState(false)
 
 
     const [signUp, setSignUp] = useState({
         name: "",
         password:"",
         repassword:"",
-        'accountType': {
-          'auctioneer': false,
-          'bidder': false
-        }
+        role: "auctioneer"
       });
     
       const handleChanges = event => {
@@ -65,10 +65,14 @@ const SignUp = props  => {
         event.preventDefault();
         console.log("Submitted!");
         if(signUp.password === signUp.repassword){
-        axios.post('https://silentauction-bw.herokuapp.com/auctioneer', signUp)
-        .then( response => console.log(response))
-        .catch(err => console.log(err))
-      } else {window.alert("Please make sure your password matches!")}
+        axiosWithAuth()
+          .post('https://silentauction-bw.herokuapp.com/register', signUp)
+          .then(response => {
+            console.log('signup submitForm post req res', response)
+            // window.localStorage.setItem('token')
+          })
+          .catch(err => console.log(err))
+        } else {window.alert("Please make sure your password matches!")}
       };
 
       const [errors, setErrors] = useState({
