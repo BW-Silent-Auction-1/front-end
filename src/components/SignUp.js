@@ -43,7 +43,7 @@ const schema = yup.object().shape({
 
 const SignUp = props  => {
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
 
     const [signUp, setSignUp] = useState({
@@ -65,11 +65,19 @@ const SignUp = props  => {
       const submitForm = (event) => {
         event.preventDefault();
         console.log("Submitted!");
+        setLoading(true)
+
         if(signUp.password === signUp.repassword){
         axiosWithAuth()
           .post('/register', signUp)
           .then(response => {
             console.log('signup submitForm post req res', response)
+            setTimeout(() => {
+              return (
+                setLoading(false),
+                window.alert('Account Created Successfully')
+              )
+            }, 3000)
           })
           .catch(err => console.log(err))
         } else {window.alert("Please make sure your password matches!")}
@@ -100,7 +108,9 @@ const SignUp = props  => {
         })
       };
 
-      return (
+      if (loading === true) {
+        return <h2>Loading...</h2>
+      } else return (
           
         <form style={{
               display: "flex",
