@@ -4,8 +4,7 @@ import AuctionCard from './AuctionCard';
 const AuctionItems = props => (
 
 console.log(props),
-  
-    <div key={props.id}>
+    <div>
       <AuctionCard 
         id={props.id}
         auctioneer_id={props.auctioneer_id}
@@ -14,7 +13,6 @@ console.log(props),
         price={props.price}
       />
     </div>
- 
 );
 
 
