@@ -21,7 +21,7 @@ const styles = {
   }
 }
 
-const App = () => (
+const App = (props) => (
   <div className='App'>
 
     <FadeIn>
@@ -30,12 +30,11 @@ const App = () => (
 
     <Route exact path="/" component={Home}/>
     <Route path="/Login/SignUp" component={ls}/>
-    <Route path="/Auction"/>
-    <Route path='/AuctionPost' component={AuctionPost} />
-    <Route path='/enter' component={AuctionPost}/>
+    <Route exact path='/AuctionPost' component={AuctionPost} />
     <Route path='/AE' component={AE}/>
-    <Route path='/SingleItem' component={SingleItem}/>
+    <Route path="/Items/:id" component={SingleItem}/>
 
+    
     <FadeIn>
       <Footer/>
     </FadeIn>
