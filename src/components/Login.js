@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../App.css';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -31,6 +32,7 @@ const btn = {
   }}
 
 const Login = props  => {
+  let history = useHistory();
   const [loading, setLoading] = useState(false);
   const [login, setlogin] = useState({
     name: "",
@@ -56,8 +58,9 @@ const Login = props  => {
         console.log('login submitForm post req res', response)
         window.localStorage.setItem('token', response.data.token)
         setTimeout(() => {
-          setLoading(false)
-        }, 500)
+          return setLoading(false),
+          history.push('/AuctionPost')
+        }, 4000)
       })
       .catch(err => {
         console.log(err.message)
@@ -88,46 +91,48 @@ const Login = props  => {
         })
     })
   };
+   
+   if (loading === true) {
+    return <h2>Loading...</h2> 
+   } else return (
+      <form style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        margin: 'auto'
+      }} 
+        className="form" 
+        onSubmit={submitForm}
+      >
+        <label htmlFor="username">  Username </label>
+        <input
+          onChange={handleChanges}
+          id="username"
+          type="text"
+          name="name"
+          placeholder="Enter valid Username"
+          value={login.name}
+        />
+        {errors.name.length > 0 ? <StyleRoot><p style={alert.root}>{errors.name}</p></StyleRoot>: null}
 
-  return (
-    <form style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      margin: 'auto'
-    }} 
-      className="form" 
-      onSubmit={submitForm}
-    >
-      <label htmlFor="username">  Username </label>
-      <input
-        onChange={handleChanges}
-        id="username"
-        type="text"
-        name="name"
-        placeholder="Enter valid Username"
-        value={login.name}
-      />
-      {errors.name.length > 0 ? <StyleRoot><p style={alert.root}>{errors.name}</p></StyleRoot>: null}
-
-      <label htmlFor='password'>Password</label>
-      <input
-        value={login.password}
-        name="password"
-        id="password"
-        type="password"
-        placeholder="Please enter a valid password"
-        onChange={handleChanges}
-      />
-      {errors.password.length > 0 ? <StyleRoot><p style={alert.root}>{errors.password}</p></StyleRoot>: null}
-        <hr></hr>
-        <StyleRoot>
-          {/* <Link to='/AuctionPost'>Login</Link> */}
-        <button style={btn.root} className='submitButton' >login</button>
-        </StyleRoot>
-    </form>
-  );
-    };
+        <label htmlFor='password'>Password</label>
+        <input
+          value={login.password}
+          name="password"
+          id="password"
+          type="password"
+          placeholder="Please enter a valid password"
+          onChange={handleChanges}
+        />
+        {errors.password.length > 0 ? <StyleRoot><p style={alert.root}>{errors.password}</p></StyleRoot>: null}
+          <hr></hr>
+          <StyleRoot>
+            {/* <Link to='/AuctionPost'>Login</Link> */}
+          <button style={btn.root} className='submitButton' >login</button>
+          </StyleRoot>
+      </form>
+   )
+  };
 
 
 
