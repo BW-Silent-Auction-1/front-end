@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../App.css';
 import * as yup from 'yup';
 import axios from 'axios';
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import { Link } from 'react-router-dom'
+import { axiosWithAuth } from '../utilities/axiosWithAuth';
 
 const schema = yup.object().shape({
-    username: yup.string().required("Please enter a username"),
+    name: yup.string().required("Please enter a username"),
     password: yup.string().required("Please enter a password"),
     terms: yup.boolean()
 })
@@ -30,8 +32,10 @@ const btn = {
   }}
 
 const Login = props  => {
+  let history = useHistory();
+  const [loading, setLoading] = useState(false);
   const [login, setlogin] = useState({
-    username: "",
+    name: "",
     password:"",
   });
   
@@ -40,20 +44,32 @@ const Login = props  => {
     validate(event)
     console.log(login, event.target.checked);
 
-    let value = event.target.type === 'checkbox' ? event.target.checked :event.target.value 
-    setlogin({...login, [event.target.name]: value});
+    let value = event.target.type === 'checkbox' ? event.target.checked : event.target.value 
+    setlogin({...login, [event.target.name]: event.target.value});
   };
 
   const submitForm = (event) => {
     event.preventDefault();
     console.log("Submitted!");
-    axios.post('https://reqres.in/api/users', login)
-    .then( response => console.log(response))
-    .catch(err => console.log(err))
+    setLoading(true)
+    axiosWithAuth()
+      .post('/login', login)
+      .then(response => {
+        console.log('login submitForm post req res', response)
+        window.localStorage.setItem('token', response.data.token)
+        setTimeout(() => {
+          return setLoading(false),
+          history.push('/AuctionPost')
+        }, 4000)
+      })
+      .catch(err => {
+        console.log(err.message)
+        window.alert('Invalid credentials')
+      })
   };
 
   const [errors, setErrors] = useState({
-    username: "",
+    name: "",
     password:"",
   });
 
@@ -75,45 +91,48 @@ const Login = props  => {
         })
     })
   };
+   
+   if (loading === true) {
+    return <h2>Loading...</h2> 
+   } else return (
+      <form style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        margin: 'auto'
+      }} 
+        className="form" 
+        onSubmit={submitForm}
+      >
+        <label htmlFor="username">  Username </label>
+        <input
+          onChange={handleChanges}
+          id="username"
+          type="text"
+          name="name"
+          placeholder="Enter valid Username"
+          value={login.name}
+        />
+        {errors.name.length > 0 ? <StyleRoot><p style={alert.root}>{errors.name}</p></StyleRoot>: null}
 
-  return (
-    <form style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      margin: 'auto'
-    }} 
-      className="form" 
-      onSubmit={submitForm}
-    >
-      <label htmlFor="username">  Username </label>
-      <input
-        onChange={handleChanges}
-        id="username"
-        type="text"
-        name="username"
-        placeholder="Enter valid Username"
-        value={login.username}
-      />
-      {errors.username.length > 0 ? <StyleRoot><p style={alert.root}>{errors.username}</p></StyleRoot>: null}
-
-      <label htmlFor='password'>Password</label>
-      <input
-        value={login.password}
-        name="password"
-        id="password"
-        type="password"
-        placeholder="Please enter a valid password"
-        onChange={handleChanges}
-      />
-      {errors.password.length > 0 ? <StyleRoot><p style={alert.root}>{errors.password}</p></StyleRoot>: null}
-        <hr></hr>
-        <StyleRoot>
-        <button style={btn.root} className='submitButton' ><Link to='/AuctionPost'>Login</Link></button>
-        </StyleRoot>
-    </form>
-  );
-    };
+        <label htmlFor='password'>Password</label>
+        <input
+          value={login.password}
+          name="password"
+          id="password"
+          type="password"
+          placeholder="Please enter a valid password"
+          onChange={handleChanges}
+        />
+        {errors.password.length > 0 ? <StyleRoot><p style={alert.root}>{errors.password}</p></StyleRoot>: null}
+          <hr></hr>
+          <StyleRoot>
+            {/* <Link to='/AuctionPost'>Login</Link> */}
+          <button style={btn.root} className='submitButton' >login</button>
+          </StyleRoot>
+      </form>
+   )
+  };
 
 
 

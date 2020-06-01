@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 import Account from './components/Account';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -11,8 +12,11 @@ import { bounce } from 'react-animations';
 import AuctionPost from './components/AuctionPost';
 import Radium, {StyleRoot} from 'radium';
 import SingleItem from './components/SingleItem';
-import AE from './components/Add&Edit';
 import './App.css';
+import AE from './components/Add&Edit';
+
+// Back end API
+// https://silentauction-bw.herokuapp.com/
 
 const styles = {
   bounce: {
@@ -30,8 +34,8 @@ const App = (props) => (
 
     <Route exact path="/" component={Home}/>
     <Route path="/Login/SignUp" component={ls}/>
-    <Route exact path='/AuctionPost' component={AuctionPost} />
-    <Route path='/AE' component={AE}/>
+    <PrivateRoute exact path='/AuctionPost' component={AuctionPost} />
+    <PrivateRoute path='/AE' component={AE}/>
     <Route path="/Items/:id" component={SingleItem}/>
 
     

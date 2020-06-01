@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import '../App.css';
-import * as yup from 'yup';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import * as yup from 'yup';
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import { Link } from 'react-router-dom';
 import FadeIn from 'react-fade-in';
 import Moment from 'react-moment';
+
+import { connect } from 'react-redux';
+import addAuctionItem from './Features/AuctionItems/AddAuctionItem';
 
 
 const schema = yup.object().shape({
@@ -14,9 +17,9 @@ const schema = yup.object().shape({
     name: yup.string().required("Please enter a Name of your item."),
     description: yup.string().required("Please describe your item."),
     image:yup.string(),
-    imageLink: yup.string(),
+    image_url: yup.string(),
     dateStart:yup.string().required("Please pick your auction dates."),
-    dateEnd:yup.string().required("Please pick your auction dates."),
+    end_date:yup.string().required("Please pick your auction dates."),
     price: yup.string().required("Please enter a starting price.")
 })
 
@@ -40,15 +43,20 @@ const btn = {
       }
   }}
 
+
 const AddItem = props  => {
+  console.log('AddItem props', props)
+
+  let history = useHistory();
+  const [loading, setLoading] = useState(false)
   const [addItem, setAddItem] = useState({
     username:"",
     name:"",
     description:"",
-    imageLink:"",
+    image_url:"",
     image:"",
     dateStart:"",
-    dateEnd:"",
+    end_date:"",
     price:""
   })
   
@@ -64,8 +72,16 @@ const AddItem = props  => {
   const submitForm = (event) => {
     event.preventDefault();
     console.log("Submitted!");
-    axios.put('https://silentauction-bw.herokuapp.com/auctioneer/:id/items', addItem)
-    .then( response => console.log(response))
+    setLoading(true)
+
+    axios.post('https://silentauction-bw.herokuapp.com/auctioneer/1/items', addItem)
+    .then( response => {
+      console.log(response)
+      setTimeout(() => {
+        setLoading(false)
+        history.push('/AuctionPost')
+      }, 1000)
+    })
     .catch(err => console.log(err))
   };
 
@@ -74,9 +90,9 @@ const AddItem = props  => {
     name:"",
     description:"",
     image:"",
-    imageLink:"",
+    image_url:"",
     dateStart:"",
-    dateEnd:"",
+    end_date:"",
     price:""
   });
 
@@ -98,8 +114,10 @@ const AddItem = props  => {
         })
     })
   };
-
-  return (
+  
+  if (loading === true) {
+    return <h2>Adding Item...</h2>
+  } else return (
     <form style={{
       display: "flex",
       flexDirection: "column",
@@ -188,12 +206,15 @@ const AddItem = props  => {
 
         <hr></hr>
         <StyleRoot>
-        <button style={btn.root} className='submitButton' ><Link to='/AuctionPost'>Post Item</Link></button>
+        {/* <Link to='/AuctionPost'>Post Item</Link> */}
+        <button style={btn.root} className='submitButton'>Post Item</button>
         </StyleRoot>
     </form>
   );
     };
 
+const mapStateToProps = null
 
+const mapDispatchToProps = { addAuctionItem }
 
-export default AddItem;
+export default connect(mapStateToProps, mapDispatchToProps)(AddItem);

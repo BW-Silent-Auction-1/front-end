@@ -3,7 +3,7 @@ import AuctionCard from './AuctionCard';
 
 const AuctionItems = props => (
 
-
+console.log(props),
   
     <div>
       <AuctionCard 

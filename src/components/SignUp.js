@@ -5,6 +5,8 @@ import axios from 'axios';
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 
+import { axiosWithAuth } from '../utilities/axiosWithAuth';
+
 
 
 
@@ -30,9 +32,10 @@ const alert = {
 
 
 const schema = yup.object().shape({
-    username: yup.string().required("Please enter a username"),
+    name: yup.string().required("Please enter a username"),
     password: yup.string().min(4,"Seems a little short").required("Please enter a password"),
-    repassword:yup.string().required("Please confirm your password")
+    repassword:yup.string().required("Please confirm your password"),
+    role: yup.string().required('Please choose a role')
 })
 
 
@@ -40,12 +43,14 @@ const schema = yup.object().shape({
 
 const SignUp = props  => {
 
+  const [loading, setLoading] = useState(false)
 
 
     const [signUp, setSignUp] = useState({
-        username: "",
+        name: "",
         password:"",
         repassword:"",
+        role: ""
       });
     
       const handleChanges = event => {
@@ -54,17 +59,28 @@ const SignUp = props  => {
         console.log(signUp, event.target.checked);
 
         let value = event.target.type === 'checkbox' ? event.target.checked :event.target.value 
-        setSignUp({...signUp, [event.target.name]: value});
+        setSignUp({...signUp, [event.target.name]: event.target.value});
     };
 
       const submitForm = (event) => {
         event.preventDefault();
         console.log("Submitted!");
+        setLoading(true)
+
         if(signUp.password === signUp.repassword){
-        axios.post('https://reqres.in/api/users', signUp)
-        .then( response => console.log(response))
-        .catch(err => console.log(err))
-      } else {window.alert("Please make sure your password matches!")}
+        axiosWithAuth()
+          .post('/register', signUp)
+          .then(response => {
+            console.log('signup submitForm post req res', response)
+            setTimeout(() => {
+              return (
+                setLoading(false),
+                window.alert('Account Created Successfully')
+              )
+            }, 3000)
+          })
+          .catch(err => console.log(err))
+        } else {window.alert("Please make sure your password matches!")}
       };
 
       const [errors, setErrors] = useState({
@@ -92,7 +108,9 @@ const SignUp = props  => {
         })
       };
 
-      return (
+      if (loading === true) {
+        return <h2>Loading...</h2>
+      } else return (
           
         <form style={{
               display: "flex",
@@ -105,9 +123,9 @@ const SignUp = props  => {
             onChange={handleChanges}
             id="username"
             type="text"
-            name="username"
+            name="name"
             placeholder="Enter valid Username"
-            value={signUp.username}
+            value={signUp.name}
           />
           {errors.username.length > 0 ? <StyleRoot><p style={alert.root}>{errors.username}</p> </StyleRoot>: null}
 
@@ -136,13 +154,14 @@ const SignUp = props  => {
 
           <label htmlFor='selection'> Auctioneer or Bidder?  </label>
           <select
-            value={signUp.user}
-            name="user"
+            value={signUp.role}
+            name="role"
             id="user"
             onChange={handleChanges}
           >
-              <option value="Auctioneer">Auctioneer</option>
-              <option value="Bidder">Bidder</option>
+              <option value=""></option>
+              <option value="auctioneer">Auctioneer</option>
+              <option value="bidder">Bidder</option>
           </select>
 
             <hr></hr>
