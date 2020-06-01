@@ -34,7 +34,8 @@ const alert = {
 const schema = yup.object().shape({
     name: yup.string().required("Please enter a username"),
     password: yup.string().min(4,"Seems a little short").required("Please enter a password"),
-    repassword:yup.string().required("Please confirm your password")
+    repassword:yup.string().required("Please confirm your password"),
+    role: yup.string().required('Please choose a role')
 })
 
 
@@ -49,7 +50,7 @@ const SignUp = props  => {
         name: "",
         password:"",
         repassword:"",
-        role: "auctioneer"
+        role: ""
       });
     
       const handleChanges = event => {
@@ -58,7 +59,7 @@ const SignUp = props  => {
         console.log(signUp, event.target.checked);
 
         let value = event.target.type === 'checkbox' ? event.target.checked :event.target.value 
-        setSignUp({...signUp, [event.target.name]: value});
+        setSignUp({...signUp, [event.target.name]: event.target.value});
     };
 
       const submitForm = (event) => {
@@ -143,13 +144,14 @@ const SignUp = props  => {
 
           <label htmlFor='selection'> Auctioneer or Bidder?  </label>
           <select
-            value={signUp.user}
-            name="user"
+            value={signUp.role}
+            name="role"
             id="user"
             onChange={handleChanges}
           >
-              <option value="Auctioneer">Auctioneer</option>
-              <option value="Bidder">Bidder</option>
+              <option value=""></option>
+              <option value="auctioneer">Auctioneer</option>
+              <option value="bidder">Bidder</option>
           </select>
 
             <hr></hr>
