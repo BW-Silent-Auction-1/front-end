@@ -5,7 +5,7 @@ const AuctionItems = props => (
 
 console.log(props),
   
-    <div>
+    <div key={props.id}>
       <AuctionCard 
         id={props.id}
         auctioneer_id={props.auctioneer_id}
