@@ -31,6 +31,7 @@ const btn = {
   }}
 
 const Login = props  => {
+  const [loading, setLoading] = useState(false);
   const [login, setlogin] = useState({
     name: "",
     password:"",
@@ -48,11 +49,15 @@ const Login = props  => {
   const submitForm = (event) => {
     event.preventDefault();
     console.log("Submitted!");
+    setLoading(true)
     axiosWithAuth()
       .post('/login', login)
       .then(response => {
         console.log('login submitForm post req res', response)
         window.localStorage.setItem('token', response.data.token)
+        setTimeout(() => {
+          setLoading(false)
+        }, 500)
       })
       .catch(err => {
         console.log(err.message)

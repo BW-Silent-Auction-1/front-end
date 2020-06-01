@@ -35,7 +35,7 @@ const App = (props) => (
     <Route exact path="/" component={Home}/>
     <Route path="/Login/SignUp" component={ls}/>
     <PrivateRoute exact path='/AuctionPost' component={AuctionPost} />
-    <Route path='/AE' component={AE}/>
+    <PrivateRoute path='/AE' component={AE}/>
     <Route path="/Items/:id" component={SingleItem}/>
 
     
