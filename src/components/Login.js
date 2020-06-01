@@ -5,8 +5,6 @@ import axios from 'axios';
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import { Link } from 'react-router-dom'
-
-import Cookies from 'js-cookie';
 import { axiosWithAuth } from '../utilities/axiosWithAuth';
 
 const schema = yup.object().shape({
@@ -56,7 +54,10 @@ const Login = props  => {
         console.log('login submitForm post req res', response)
         window.localStorage.setItem('token', response.data.token)
       })
-      .catch(err => console.log(err.message))
+      .catch(err => {
+        console.log(err.message)
+        window.alert('Invalid credentials')
+      })
   };
 
   const [errors, setErrors] = useState({
