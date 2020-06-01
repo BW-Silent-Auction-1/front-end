@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
-import { Link } from 'react-router-dom'
 import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import { Link } from 'react-router-dom';
 import FadeIn from 'react-fade-in';
 import Moment from 'react-moment';
+
+import { connect } from 'react-redux';
+import addAuctionItem from './Features/AuctionItems/AddAuctionItem';
 
 
 const schema = yup.object().shape({
