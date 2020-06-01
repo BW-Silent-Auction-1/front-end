@@ -51,7 +51,7 @@ const AddItem = props  => {
     imageLink:"",
     image:"",
     dateStart:"",
-    dateEnd:"",
+    end_date:"",
     price:""
   })
   
@@ -67,7 +67,7 @@ const AddItem = props  => {
   const submitForm = (event) => {
     event.preventDefault();
     console.log("Submitted!");
-    axios.put('https://silentauction-bw.herokuapp.com/auctioneer/:id/items', addItem)
+    axios.post('https://silentauction-bw.herokuapp.com/auctioneer/1/items', addItem)
     .then( response => console.log(response))
     .catch(err => console.log(err))
   };
