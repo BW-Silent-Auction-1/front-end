@@ -66,10 +66,9 @@ const SignUp = props  => {
         console.log("Submitted!");
         if(signUp.password === signUp.repassword){
         axiosWithAuth()
-          .post('https://silentauction-bw.herokuapp.com/register', signUp)
+          .post('/register', signUp)
           .then(response => {
             console.log('signup submitForm post req res', response)
-            // window.localStorage.setItem('token')
           })
           .catch(err => console.log(err))
         } else {window.alert("Please make sure your password matches!")}

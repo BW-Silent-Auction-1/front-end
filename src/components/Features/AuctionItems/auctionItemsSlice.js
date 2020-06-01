@@ -5,9 +5,7 @@ let nextId = 0
 
 const auctionItemsSlice = createSlice({
   name: 'auctionItems',
-  initialState: {
-    auctionItemsArray: []
-  },
+  initialState: {},
   reducers: {
     addAuctionItem(state, action) {
       axios
@@ -16,20 +14,17 @@ const auctionItemsSlice = createSlice({
         console.log(response, action.payload)
         })
         .catch(err => console.log(err))  
+    },
+    placeBid(state, action) {
+      axios
+        .post('https://silentauction-bw.herokuapp.com/item/1/lenny/2', action.payload)
+        .then(response => {
+          console.log(response)
+        })
     }
-  },
-    // getAuctionItems(state, action) {
-    //   axios.get('https://silentauction-bw.herokuapp.com/item')
-    //     .then(response => {
-    //       console.log('getAuctionItems req res', response)
-    //       // state.auctionItemsArray.push(response.data)
-    //       const auctionItemsArr = response.data
-    //       return auctionItemsArr 
-    //     })
-    //     .catch(err => console.log(err))
-    // }
+  }
 })
 
-export const { addAuctionItem, getAuctionItems } = auctionItemsSlice.actions
+export const { addAuctionItem } = auctionItemsSlice.actions
 
 export default auctionItemsSlice.reducer

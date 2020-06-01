@@ -6,6 +6,7 @@ import { pulse } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import { Link } from 'react-router-dom'
 
+import Cookies from 'js-cookie';
 import { axiosWithAuth } from '../utilities/axiosWithAuth';
 
 const schema = yup.object().shape({
@@ -50,10 +51,9 @@ const Login = props  => {
     event.preventDefault();
     console.log("Submitted!");
     axiosWithAuth()
-      .post('https://silentauction-bw.herokuapp.com/login', login)
+      .post('/login', login)
       .then(response => {
         console.log('login submitForm post req res', response)
-        // window.localStorage.setItem('token')
       })
       .catch(err => console.log(err.message))
   };
