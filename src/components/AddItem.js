@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import * as yup from 'yup';
 import { pulse } from 'react-animations';
@@ -42,8 +43,12 @@ const btn = {
       }
   }}
 
+
 const AddItem = props  => {
   console.log('AddItem props', props)
+
+  let history = useHistory();
+  const [loading, setLoading] = useState(false)
   const [addItem, setAddItem] = useState({
     username:"",
     name:"",
@@ -67,8 +72,16 @@ const AddItem = props  => {
   const submitForm = (event) => {
     event.preventDefault();
     console.log("Submitted!");
+    setLoading(true)
+
     axios.post('https://silentauction-bw.herokuapp.com/auctioneer/1/items', addItem)
-    .then( response => console.log(response))
+    .then( response => {
+      console.log(response)
+      setTimeout(() => {
+        setLoading(false)
+        history.push('/AuctionPost')
+      }, 1000)
+    })
     .catch(err => console.log(err))
   };
 
@@ -101,8 +114,10 @@ const AddItem = props  => {
         })
     })
   };
-
-  return (
+  
+  if (loading === true) {
+    return <h2>Adding Item...</h2>
+  } else return (
     <form style={{
       display: "flex",
       flexDirection: "column",
