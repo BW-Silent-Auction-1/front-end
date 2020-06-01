@@ -139,6 +139,18 @@ const SignUp = props  => {
             placeholder="Re-enter password"
           />
           {errors.repassword.length > 0 ? <StyleRoot><p style={alert.root}>{errors.repassword}</p></StyleRoot>: null}
+          
+
+          <label htmlFor='selection'> Auctioneer or Bidder?  </label>
+          <select
+            value={signUp.user}
+            name="user"
+            id="user"
+            onChange={handleChanges}
+          >
+              <option value="Auctioneer">Auctioneer</option>
+              <option value="Bidder">Bidder</option>
+          </select>
 
             <hr></hr>
           

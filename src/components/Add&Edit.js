@@ -24,8 +24,9 @@ const pulser = {
 
 const AE = () => {  
   return (
+      
     <div className='lsform' style={{display:'flex', flexDirection:'space-between', padding:'3rem'}}>
-    
+
     <FadeIn transitionDuration='4000' delay='500'>
         <Card title="Create Auction" style={{backgroundColor:'dodgerblue', border:'1px solid black'}}>
           <AddItem/>
@@ -33,12 +34,6 @@ const AE = () => {
      </FadeIn>
 
       
-
-        <FadeIn transitionDuration='4000' delay='500'>
-        <Card title="Edit an Auction" style={{backgroundColor:'dodgerblue', border:'1px solid black'}}>
-          <EditItem/>
-        </Card>
-        </FadeIn>
     </div>
   )
 }

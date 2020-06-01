@@ -4,15 +4,17 @@ import axios from 'axios';
 import AuctionItems from "./AuctionItems";
 import dummyData from "../dummy-data.js";
 import FadeIn from "react-fade-in";
-
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 const PostsPage = (props) => {
 
   const [info , setInfo] =useState([])
 
+  
+
   useEffect(() => {
       axios
-      .get("https://silentauction-bw.herokuapp.com/item")
+      .get("https://silentauction-bw.herokuapp.com/item/")
       .then(response => {
           setInfo(response.data);
       });
@@ -20,12 +22,13 @@ const PostsPage = (props) => {
   }, []);
 
   
-  
+
   useEffect(() => {
   console.log("data", info);
   }, [info])
   
-  
+  let history = useHistory();
+
   return (
   
   <FadeIn transitionDuration='3000' delay='400'>
@@ -35,14 +38,15 @@ const PostsPage = (props) => {
     
  
       {info.map(item =>{
-          return    <AuctionItems
+          return    <AuctionItems 
           id = {item.id}
           auctioneer_id = {item.auctioneer_id}
           name = {item.name}
           description = {item.description}
           price = {item.price}
           recorded_on = {item.recorded_on}
-          />
+          >  </AuctionItems>
+
           
       })}
 
