@@ -54,6 +54,7 @@ const Login = props  => {
       .post('/login', login)
       .then(response => {
         console.log('login submitForm post req res', response)
+        window.localStorage.setItem('token', response.data.token)
       })
       .catch(err => console.log(err.message))
   };
