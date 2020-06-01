@@ -16,9 +16,9 @@ const schema = yup.object().shape({
     name: yup.string().required("Please enter a Name of your item."),
     description: yup.string().required("Please describe your item."),
     image:yup.string(),
-    imageLink: yup.string(),
+    image_url: yup.string(),
     dateStart:yup.string().required("Please pick your auction dates."),
-    dateEnd:yup.string().required("Please pick your auction dates."),
+    end_date:yup.string().required("Please pick your auction dates."),
     price: yup.string().required("Please enter a starting price.")
 })
 
@@ -48,7 +48,7 @@ const AddItem = props  => {
     username:"",
     name:"",
     description:"",
-    imageLink:"",
+    image_url:"",
     image:"",
     dateStart:"",
     end_date:"",
@@ -77,9 +77,9 @@ const AddItem = props  => {
     name:"",
     description:"",
     image:"",
-    imageLink:"",
+    image_url:"",
     dateStart:"",
-    dateEnd:"",
+    end_date:"",
     price:""
   });
 
