@@ -8,8 +8,8 @@ import { useParams } from 'react-router-dom';
 
 const SingleItem = (props) => {
 
-
-const [item, setItem] = useState();
+const [loading, setLoading] = useState(true)
+const [item, setItem] = useState({});
 
 const {id} = useParams();
 
@@ -20,30 +20,32 @@ useEffect(() => {
        axios
         .get(`https://silentauction-bw.herokuapp.com/item/${id}`)
         .then(response => {
-          setItem(response.data);
+          // setLoading(true)
+          setItem(response.data[0]);
           console.log(response.data)
+          setTimeout(() => {
+            setLoading(false)
+          }, 1000)
       })
       .catch(error => {
         console.error(error);
       });
   
   }, []);
-  
- 
 
-console.log(item, "wtf")
-
-
-    return(
+  if (loading === true) {
+    return <h2>Loading Item...</h2>
+  } else return(
+      console.log(item),
        <div style={{ width:'100%', display:'flex', justifyContent:'center'}}>
         <Card>
         <img style={{width:'90%'}}/>
-             <h1>{props.item}</h1>
+             <h1>{item.itemName}</h1>
 
              <hr></hr>
 
-             <p>{props.description}</p>
-             <p style={{border:'1px solid dodgerblue'}}>Current Bid : <span style={{color:'green'}}>{props.price}</span></p>
+             <p>{item.itemDescription}</p>
+             <p style={{border:'1px solid dodgerblue'}}>Current Bid : <span style={{color:'green'}}>{item.initialPrice}</span></p>
 
         <Button type='danger'>Place Bid</Button>
 

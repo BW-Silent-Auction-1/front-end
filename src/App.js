@@ -7,7 +7,6 @@ import Header from './components/Header';
 import Home from './components/Home';
 import ls from './components/Login&SignUp';
 import FadeIn from 'react-fade-in';
-import AddAuctionItem from './components/Features/AuctionItems/AddAuctionItem';
 import { bounce } from 'react-animations';
 import AuctionPost from './components/AuctionPost';
 import Radium, {StyleRoot} from 'radium';
@@ -32,11 +31,11 @@ const App = (props) => (
       <Header/>
     </FadeIn>
 
-    <Route exact path="/" component={Home}/>
-    <Route path="/Login/SignUp" component={ls}/>
+    <Route exact path="/" component={Home} />
+    <Route path="/Login/SignUp" component={ls} />
     <PrivateRoute exact path='/AuctionPost' component={AuctionPost} />
-    <PrivateRoute path='/AE' component={AE}/>
-    <Route path="/Items/:id" component={SingleItem}/>
+    <PrivateRoute path='/AE' component={AE} />
+    <Route path="/Items/:id" component={SingleItem} />
 
     
     <FadeIn>
